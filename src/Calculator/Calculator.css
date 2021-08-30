@@ -1,0 +1,89 @@
+@import url('http://fonts.cdnfonts.com/css/digital-7-mono');
+
+.calculator {
+    margin: 200px auto;
+    max-width: 300px;
+    background-color: #e4e4e4;
+    padding: 3px;
+    border-radius: 6px;
+    box-shadow: -1px -1px 9px rgb(167 167 167);
+}
+.formulaScreen,.outputScreen {
+    height: 40px;
+    background-color: rgb(61, 61, 61);
+    color: #e4e4e4;
+    text-align: right;
+    font-family: 'Digital-7 Mono', sans-serif;
+    font-weight: 500;
+    font-size: 35px;
+    color: #10b37c;
+    
+}
+.formulaScreen {
+    border-radius: 4px 4px 0px 0px;
+    margin: 5px 5px 0px 5px;
+    font-size: 25px;
+    color: #10b37c;
+}
+.outputScreen {
+    border-radius: 0 0 4px 4px;
+    margin: 0px 5px 10px 5px;
+}
+.buttons {
+    display: grid;
+    grid-template: repeat(5,1fr) / repeat(4,1fr);
+}
+.buttons button {
+    background-color: #fdfdfd;
+    border: 1px solid #ddd;
+    margin: 1px;
+    border-radius: 4px;
+    font-size: 20px;
+    min-height: 60px;
+    height: auto;
+    transition: .1s;
+    font-family: 'Digital-7 Mono', sans-serif;
+    font-weight: 500;
+    
+}
+.buttons button:hover {
+    background-color: #f5f5f5;
+    color: #000;
+}
+.buttons button:active {
+    background-color: #d6d6d6;
+}
+#AC {
+    background-color: #9e455b;
+    color: #fff;
+}
+#AC:hover {
+    background-color: #833a4c;
+}
+#AC:active {
+    background-color: #662d3c;
+}
+#AC,#zero {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+#equals, #substract, #add {
+    
+}
+#equals {
+    height: auto;
+    grid-column-start: 5;
+    grid-column-end: 4;
+    grid-row-start: 4;
+    grid-row-end: 6;
+    background-color: #48547b;
+    color: #fff;
+    
+}
+#equals:hover {
+    background-color: #3e4869;
+}
+#equals:active {
+    background-color: #333c57;
+}
+
