@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./Calculator.css";
 
 const Calculator = (props) => {
-
   const operators = ["+", "-", "/", "x", "="];
   const [state, setState] = useState({
     prevValue: 0,
@@ -39,7 +38,7 @@ const Calculator = (props) => {
       });
     } else if (operators.includes(value)) {
       if (state.prevOperator !== "") {
-        if(state.prevOperator === '=' ) {
+        if (state.prevOperator === "=") {
           setState((prevState) => ({
             prevValue: prevState.result,
             prevOperator: value,
@@ -47,23 +46,35 @@ const Calculator = (props) => {
             buffer: prevState.result + value,
             result: prevState.result,
           }));
-        }
-        else 
-        {
-
-          const result = parseFloat(calculate().toFixed(8));
-          setState((prevState) => ({
-            prevValue: result,
-            prevOperator: value,
-            currValue: "",
-            buffer: prevState.buffer + value,
-            result: result,
-          }));
-        }
-        
-      } else {
-          state.prevValue === 0 && state.buffer === "" ? 
+        } else {
+          if (state.result && state.prevOperator === '=') {
+            setState((prevState) => {
+              let preparedBuffer = prevState.buffer
+                .split("")
+                .slice(0, prevState.buffer.length - 1);
+              preparedBuffer.push(value);
+              return {
+                prevValue: prevState.result,
+                prevOperator: value,
+                currValue: "",
+                buffer: preparedBuffer.join(""),
+                result: prevState.result,
+              };
+            });
+          } else {
+            const result = parseFloat(calculate().toFixed(8));
             setState((prevState) => ({
+              prevValue: result,
+              prevOperator: value,
+              currValue: "",
+              buffer: prevState.buffer + value,
+              result: result,
+            }));
+          }
+        }
+      } else {
+        state.prevValue === 0 && state.buffer === ""
+          ? setState((prevState) => ({
               prevValue: prevState.prevValue,
               prevOperator: value,
               currValue: "",
@@ -88,7 +99,7 @@ const Calculator = (props) => {
   };
 
   console.log(state);
-  
+
   return (
     <div className="calculator">
       <div className="formulaScreen">{state.buffer}</div>
